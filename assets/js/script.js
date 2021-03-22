@@ -7,7 +7,58 @@ function togggleHiddenAttr(el, attr) {
   return true;
 }
 
+
 jQuery(document).ready(function ($) {
+  /**
+   * Simple front-end search of alumni by name
+   * See `template-alumni-members.php` for reference
+   **/
+  function alumniSearch(term) {
+    const $allAlumni = $('[data-alumni-name]')
+
+    if (term === '') {
+      $allAlumni.show()
+    }
+
+    const $alumniMatches = $('[data-alumni-name*="' + term.toLowerCase()  +'"]')
+    if ($alumniMatches.length > 0) {
+      $allAlumni.hide()
+      $alumniMatches.show()
+    }
+
+    return $alumniMatches.length
+  }
+
+  // Toggle alumni form to add post
+  const $alumniTopicFormButton = $('#forum-topic-form-button')
+  const $alumniTopicForm = $('#forum-topic-form')
+
+  $alumniTopicForm.hide()
+  $alumniTopicFormButton.click(function (event) {
+    event.preventDefault()
+    $alumniTopicFormButton.hide()
+    $alumniTopicForm.show()
+  })
+
+
+  // Homepage slider
+  var sliderClass = ".testimonials-slider";
+  if ($(sliderClass).length > 0) {
+    new Glide(sliderClass, { autoplay: 5000 }).mount();
+  }
+
+  $("#alumni-member-search").on("keyup", function (event) {
+    const result = alumniSearch(event.currentTarget.value)
+    const errorMsg = $("#alumni-search-no-results")
+    if (result === 0 && errorMsg.length > 0) {
+
+    } else if (result === 0 && errorMsg.length === 0) {
+      $(`<p id="alumni-search-no-results">No results for your search.</p>`).insertAfter($(this))
+    } else {
+      errorMsg.remove()
+    }
+  })
+
   // Accordions
   // accordionHeader.click(() => accordionBody where labelledby = accordionHeader.id remove hide)
   $(".accordion-header").click(function (event) {

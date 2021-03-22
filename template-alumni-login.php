@@ -18,9 +18,9 @@
 					<div class="text-format content body-big">
 						<?php the_content(); ?>
 
-			<div class="alumni-login has-background-grey-lighter padding-vertical-bigger padding-horizontal-large">
-			  <?php wp_login_form(); ?>
-			</div>
+						<div class="alumni-login has-background-grey-lighter padding-vertical-bigger padding-horizontal-large">
+							<?php wp_login_form( array ( 'redirect' => get_permalink( $alumni->home_page_id ) ) ); ?>
+						</div>
 					</div>
 				</section>
 			</div>

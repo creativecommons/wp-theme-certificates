@@ -106,7 +106,7 @@
                             "key": "field_5fb480d5b5e09",
                             "label": "Attribution",
                             "name": "attribution",
-                            "type": "text",
+                            "type": "wysiwyg",
                             "instructions": "",
                             "required": 0,
                             "conditional_logic": 0,
@@ -116,10 +116,10 @@
                                 "id": ""
                             },
                             "default_value": "",
-                            "placeholder": "",
-                            "prepend": "",
-                            "append": "",
-                            "maxlength": ""
+                            "tabs": "all",
+                            "toolbar": "basic",
+                            "media_upload": 0,
+                            "delay": 0
                         },
                         {
                             "key": "field_5fb480e7b5e0a",
@@ -162,5 +162,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1605665474
+    "modified": 1607416585
 }

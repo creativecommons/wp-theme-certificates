@@ -17,8 +17,15 @@ require STYLESHEETPATH . '/inc/custom-post-types/queulat-cc-course-cpt-plugin/cc
 require STYLESHEETPATH . '/inc/custom-post-types/queulat-cc-events-cpt-plugin/cc-events-cpt-plugin.php';
 
 /* Include local files */
-require STYLESHEETPATH . '/inc/certificates-functions.php';
+require STYLESHEETPATH . '/inc/alumni.php';
 require STYLESHEETPATH . '/inc/acf.php';
+
+/**
+ * Instantiate alumni class
+ */
+$alumni = CC_Alumni::get_instance();
+
+require STYLESHEETPATH . '/inc/certificates-functions.php';
 require STYLESHEETPATH . '/inc/widgets.php';
 
 /**
@@ -71,3 +78,6 @@ class CC_Certificates_Site {
  * */
 
 $_s = CC_Certificates_Site::get_instance();
+
+
+remove_filter( 'bbp_get_breadcrumb', '__return_false' );

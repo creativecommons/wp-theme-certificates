@@ -13,7 +13,7 @@
 
 <section class="home-hero has-padding-large">
   <div class="container margin-bottom-bigger">
-	<div class="content padding-top-bigger padding-bottom-bigger body-big">
+	<div class="content padding-top-bigger padding-bottom-bigger body-bigger">
 	  <h1 class="title is-1 has-text-black"><?php echo $title; ?></h1>
 	  <?php echo $content; ?>
 	</div>
@@ -44,7 +44,7 @@
 		  <p class="margin-top-big"><?php echo $description; ?></p>
 			<?php if ( $featured_course ) : ?>
 			<a
-			  class="has-text-success is-block has-text-weight-bold body-big margin-top-big"
+			  class="has-text-success is-block has-text-weight-bold margin-top-big course-link"
 			  href="<?php echo $featured_course; ?>">
 			  See course
 			</a>

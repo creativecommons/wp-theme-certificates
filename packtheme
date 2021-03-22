@@ -1,0 +1,3 @@
+#!/bin/bash
+
+zip creativecommons-certificate.zip * -r -x \*.git\*  -x '*/.DS_Store/*' -x '*/node_modules/*' -x '*/.history/*'

@@ -78,7 +78,7 @@ endif;
 					$faqs_title = get_sub_field( 'title' );
 					?>
 
-			  <section class="faq-group margin-bottom-xl">
+			  <section class="faq-group margin-bottom-xl body-big">
 				<h2 class="margin-bottom-bigger">
 					<?php echo $faqs_title; ?>
 				</h2>
@@ -91,7 +91,7 @@ endif;
 							$question = get_sub_field( 'question' );
 							$answer   = get_sub_field( 'answer' )
 							?>
-				  <h3 class="margin-bottom-big margin-top-large faq-title" id="<?php echo str_slug( $question ); ?>">
+				  <h3 class="margin-bottom-big margin-top-large faq-title subtitle" id="<?php echo str_slug( $question ); ?>">
 					<a href="#<?php echo str_slug( $question ); ?>">
 							<?php echo $question; ?>
 					</a>

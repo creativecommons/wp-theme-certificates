@@ -2,14 +2,7 @@
 // Code here should be commented with a relevant issue or explanation.
 @import "bulma/sass/utilities/_all.sass";
 
-// Make sure page is always at least as tall as the user's screen (so don't see ugly whitespace below footer on short pages)
-// will fail gracefully on browsers without grid support :)
-// .creativecommons-certificate {
-//   min-height: 100vh;
-//   display: grid;
-//   grid-template-rows: auto 1fr auto;
-// }
-
+// Fix icon sizing inside of buttons, menu links, etc.
 span.icon {
   display: block;
   width: $space-big;
@@ -23,6 +16,11 @@ span.icon {
 // Accordion component
 // @todo: Should this be in vocabulary? Do/will we use this anywhere else?
 .accordion {
+  @include touch() {
+    margin-top: $space-big !important;
+    margin-bottom: $space-big !important;
+  }
+
   .accordion-item {
     border-bottom: 2px solid $color-light-gray;
 
@@ -36,7 +34,27 @@ span.icon {
       justify-content: space-between;
       align-items: center;
 
+      @include touch() {
+        padding-top: $space-normal !important;
+        padding-bottom: $space-normal !important;
+        padding-left: 0;
+        padding-right: 0;
+
+        span {
+          font-size: 0.8rem;
+        }
+
+        .icon {
+          width: 15px;
+          flex-shrink: 0;
+        }
+      }
+
       &:focus {
+        outline: 0;
+      }
+      &:focus-visible { // when user focuses with keyboard only
+        outline: auto;
         outline-color: $color-forest-green;
       }
     }
@@ -48,16 +66,40 @@ span.icon {
     .accordion-body[hidden] {
       visibility: hidden;
     }
+
+    .caret {
+      flex-shrink: 0;
+      flex-grow: 0;
+      width: 24px;
+    }
+
+    [aria-expanded="true"] .caret {
+      transform: rotate(180deg);
+      transform-origin: center;
+    }
+
+    [aria-expanded="true"] {
+      font-weight: 600;
+    }
   }
 }
 
-// Override HR color on grey bg
+// Extra color classes
 .has-background-grey-lighter {
   hr {
-    margin: $space-bigger 0;
     background-color: $color-light-gray;
+    margin: $space-big 0;
+
+    @include desktop() {
+      margin: $space-bigger 0;
+    }
   }
 }
+
+.has-background-soft-gold {
+  background-color: #fef6d8;
+}
+
 
 // Custom twitter button
 .button.twitter {
@@ -76,6 +118,23 @@ span.icon {
   padding: $space-small $space-normal;
   color: $color-forest-green;
   background-color: #e0f5e0;
+
+  // dropown variation
+  &.is-dropdown {
+    color: $color-dark-gray;
+    background-color: transparent;
+    border: 2px solid #d8d8d8;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    .caret-down {
+      width: 8px;
+      height: 19px;
+      margin-left: 12px !important;
+      color: black;
+    }
+  }
 }
 
 // Custom Register Button
@@ -85,9 +144,13 @@ span.icon {
   border-color: $color-forest-green;
 }
 
-// Remove unneeded logo margin (comes from vocabulary)
-.navbar-brand {
-  margin-left: 0 !important;
+// Custom Slack Button
+.button.slack {
+  padding: $space-normal $space-big;
+  background-color: $color-white;
+  border-color: $color-light-gray;
+  color: $color-dark-slate-gray;
+  text-transform: none;
 }
 
 // Fix bad columns ruining the entire layout
@@ -111,10 +174,9 @@ main {
   }
 }
 
-.has-background-soft-gold {
-  background-color: #fef6d8;
+.main-content {
+  min-height: 70vh;
 }
-
 .single,
 .page {
   .main-content {
@@ -161,6 +223,7 @@ main {
 
   .left {
     margin-right: $space-large;
+    line-height: calc(1.5rem + 4px);
 
     * {
       white-space: nowrap; // prevent month+date lines from wrapping
@@ -170,6 +233,14 @@ main {
       display: block;
       margin-bottom: $space-normal;
     }
+  }
+
+  .foot {
+    width: 100%;
+    column-span: 1 2;
+    display: block;
+    grid-column: span 2;
+    margin-top: $space-big;
   }
 
   @include mobile() {
@@ -190,11 +261,22 @@ main {
     }
   }
 }
+
 .fixed-card.fixed-card--simple {
   width: 100%;
   display: flex;
   justify-content: flex-start;
   align-items: center;
+}
+.fixed-card--stacked {
+  display: flex;
+  flex-direction: column;
+
+  .foot {
+    margin-top: $space-large;
+    display: flex;
+    justify-content: space-between;
+  }
 }
 
 .subtitle {
@@ -204,4 +286,119 @@ main {
 a[href="#"] {
   pointer-events: none;
   cursor: default;
+}
+
+// A bit ugly but necessary to give the correct effect on mobile
+@media screen and (min-width: 1312px) {
+  .alumni-members-wrapper--fancy {
+    .alumni-member:nth-child(21),
+    .alumni-member:nth-child(22),
+    .alumni-member:nth-child(31),
+    .alumni-member:nth-child(32) {
+      opacity: 0;
+      pointer-events: none;
+    }
+  }
+}
+
+.small-caption {
+  font-size: 11px;
+}
+
+@include desktop() {
+  .course {
+    padding: 56px 48px !important;
+  }
+}
+
+// Navbar revisions
+.navbar-start {
+    padding-top: 8px !important;
+}
+@include desktop() {
+  .navbar-brand {
+      padding-left: 0 !important;
+  }
+}
+
+// To fix button height issues
+.button {
+    height: auto;
+}
+
+/**
+ * BbPress Overrides
+ * Styles to override various parts of BB Press,
+ * to make them look as much like Francisco's designs as possible.
+ */
+@include desktop() {
+  #bbpress-forums ul.bbp-topics {
+    font-size: 16px;
+  }
+
+  a.bbp-topic-permalink {
+    font-size: 27px;
+    line-height: 39px;
+    font-weight: bold;
+    color: initial;
+  }
+}
+
+
+.course-sidebar + .column .fixed-card {
+  margin-bottom: 1rem;
+}
+
+.single-cc_course .breadcrumbs .breadcrumb_last {
+  color: #9c9c9c;
+}
+
+.single.single-cc_course .main-content .entry-page-content {
+    padding-top: 0;
+    padding-bottom: 3rem;
+}
+
+
+.main-footer .attribution {
+  position: relative;
+}
+
+
+
+.page-template-template-alumni-home ul.alumni-header {
+	display: block;
+}
+
+.page-template-template-alumni-home ul.alumni-header li {
+	margin-bottom: 1rem;
+}
+
+
+// Header compatibility issues
+@include tablet() {
+  header.main-header {
+    margin-bottom: 2rem !important;
+  }
+}
+
+@include desktop() {
+  header.main-header {
+    max-width: 1430px;
+    margin: 0 auto;
+  }
+}
+
+.navbar-burger:hover {
+  background-color: transparent;
+}
+
+@include mobile() {
+  .navbar.is-default .navbar-menu .navbar-end .navbar-dropdown .navbar-item,
+  .navbar.is-default .navbar-menu .navbar-end .navbar-item {
+    color: white !important;
+  }
+
+  .is-arrowless .icon.caret-down {
+    display: none;
+  }
 }

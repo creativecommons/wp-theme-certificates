@@ -51,6 +51,10 @@ Add the following to your `composer.json` file:
 3. Click on 'Upload Theme', select the zip file, and click on 'Install Now'.
 4. Click on the 'Activate' button to use your new theme right away.
 
+## Local Development
+
+- Frontend JavaScript and CSS are located in the `front/` directory. There you can `npm install` and `npm run watch` to recompile scss and js files when files are updated. You'll still need to manually refresh your browser to see changes. Alternatively, `npm run watch` can be paired with something like [BrowserSync](https://browsersync.io) to auto update your browser tab when changes are made. You can use the command `browser-sync start --proxy https://your-local-domain.test --files="**/*.css,**/*.php"` in the root of the theme as an example.
+
 ## Manual Deployment
 
 1. Export local DB with url rename `wp search-replace 'certs-backup.test' 'tempcert.creativecommons.org' --export=certs.sql`

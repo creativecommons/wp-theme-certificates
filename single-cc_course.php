@@ -4,7 +4,7 @@
 
 	// Use the local registration link, OR fallback to the global registration link
 	$no_upcoming       = false;
-	$events 					 = Certificates_Website::get_upcoming_course_events( get_the_ID() );;
+	$events 					 = Certificates_Website::get_upcoming_course_events( get_the_ID() );
 	$upcoming_meta     = count($events) > 0 ? Certificates_Website::get_upcoming_course_meta ( $events ) : [];
 
 	if ( ! empty ($upcoming_meta) ) {
@@ -28,12 +28,15 @@
 		?>
 		<div class="container">
 			<?php get_template_part( 'inc/partials/entry/course', 'header' ); ?>
+			<?php if ( get_field( 'featured_image_attribution' ) ) { ?>
+				<div class="attribution attribution--right"><?php echo get_field( 'featured_image_attribution' ); ?></div>
+			<?php } ?>
 		</div>
 	</header>
 	<div class="container">
 		<div class="columns margin-top-0 is-desktop">
 		<div class="column is-3-desktop has-background-soft-gold course-sidebar is-full">
-					<div class="entry-meta margin-top-xxl">
+					<div class="entry-meta margin-top-xl">
 						<h2 class="title is-3 margin-bottom-bigger">Course details</h2>
 
 
@@ -66,7 +69,7 @@
 								</div>
 							<?php } ?>
 
-						 <a href="<?php echo $registration_link; ?>" class="button register margin-top-bigger">Register Here</a>
+						 <a href="<?php echo $registration_link; ?>" class="button register middle margin-top-bigger">Register Here</a>
 					<?php else : ?>
 						<p class="margin-bottom-bigger">There are no upcoming events for this course. Subscribe to our newsletter to stay updated on course announcements.</p>
 					<?php endif; ?>

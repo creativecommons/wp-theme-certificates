@@ -23,7 +23,7 @@
 	include get_template_part( 'inc/partials/home', 'hero' );
 	?>
 
-  <section class="has-background-grey-lighter padding-top-big padding-bottom-xl">
+  <section class="has-background-grey-lighter padding-top-bigger padding-bottom-xl">
 	<div class="container">
 
 	  <div class="columns is-variable is-6 padding-bottom-large">
@@ -50,7 +50,7 @@
 		  <div class="columns is-vcentered is-gapless">
 			<?php if ( get_field('featured_upcoming_event') ) : ?>
 			<div class="column">
-			  <h3>Upcoming Course</h3>
+			  <h3>Upcoming Courses</h3>
 			</div>
 			<div class="column is-narrow">
 			  <?php // @todo: Don't hardcode this link ?>
@@ -58,8 +58,15 @@
 			</div>
 		  </div>
 		  <div>
-				<?php echo Certificates_Website::event_card( get_field('featured_upcoming_event') ); ?>
-		  </div>
+				<?php
+					$upcoming_courses  = Certificates_Website::get_upcoming_course_events( null, 2 );
+				?>
+				<?php foreach ( $upcoming_courses as $course ) : ?>
+				<div style="margin-bottom: 20px;">
+					<?php echo Certificates_Website::event_card( $course->ID ); ?>
+				</div>
+				<?php endforeach; ?>
+			</div>
 		</div>
 		<?php endif; ?>
 	  </div>
@@ -99,9 +106,9 @@
 					<?php echo $post->title->rendered; ?>
 				  </a>
 				</h4>
-				<p class="caption margin-top-normal">
+				<p class="small-caption margin-top-normal">
 				  <span><?php echo $post->author_name; ?></span>
-				  <svg class="margin-horizontal-smaller" width="6" height="6" viewBox="0 0 6 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+				  <svg class="margin-horizontal-small" width="6" height="6" viewBox="0 0 6 6" fill="none" xmlns="http://www.w3.org/2000/svg">
 				  <circle opacity="0.2" cx="3" cy="3" r="3" fill="black" />
 				</svg>
 				<span><?php echo $pretty_date; ?></span>

@@ -4,9 +4,33 @@ $color-primary: rgb(254, 246, 216);
 
 // Import Vocabulary
 @import "@creativecommons/vocabulary/scss/color.scss";
+
+$color-forest-green: #008000;
+$color-brighter-forest-green: #008B00;
+$color-success: #008000;
+
 @import "@creativecommons/vocabulary/scss/spacing.scss";
 @import "@creativecommons/vocabulary/scss/typography.scss";
 
 @import "base";
 @import "modules";
 @import "shame";
+
+.has-text-success,
+.has-text-forest-green {
+  color: $color-forest-green !important; // !important to override bulma's use of important! :(
+  text-decoration: none;
+
+  &:hover, &:focus, &:active {
+    color: $color-brighter-forest-green;
+  }
+}
+
+// hacky specificity trick to override bulma
+a.has-text-success.has-text-success,
+a.has-text-forest-green.has-text-forest-green {
+  &:hover,&:focus,&:active {
+    text-decoration: none;
+    color: $color-brighter-forest-green !important;
+  }
+}

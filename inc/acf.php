@@ -90,7 +90,7 @@ class Certificates_ACF {
 	 **/
 	public static function get_testimonials_by_cite( $citations = array() ) {
 		// @todo: FAQ page id is hardcoded here, find a way to make this dynamic
-		$testimonials    = get_field( 'testimonials', 16 );
+		$testimonials          = get_field( 'testimonials', 16 );
 		$filtered_testimonials = array();
 
 		foreach ( $testimonials as $testimonial ) {
@@ -156,6 +156,6 @@ class Certificates_ACF {
 }
 
 add_action( 'acf/init', array( 'Certificates_ACF', 'init' ) );
-add_filter( 'acf/load_field/name=blog_posts', array( 'Certificates_ACF', 'acf_load_blog_posts' ) );
+add_filter( 'acf/load_field/name=post_id', array( 'Certificates_ACF', 'acf_load_blog_posts' ) );
 add_filter( 'acf/load_field/name=featured_faqs', array( 'Certificates_ACF', 'acf_load_featured_faq_choices' ) );
 add_filter( 'acf/load_field/name=featured_testimonials', array( 'Certificates_ACF', 'acf_load_featured_testimonials' ) );

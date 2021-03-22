@@ -11,9 +11,13 @@
   }
 }
 
-a,
-a:hover {
+a {
   color: $color-forest-green;
+
+  &:hover,&:active,&:visited {
+    text-decoration: none;
+    color: $color-brighter-forest-green;
+  }
 }
 
 h1,

@@ -43,14 +43,21 @@
 									?>
 									<?php
 									// Recipient subfields
-									$name  = get_sub_field( 'name' );
-									$bio   = get_sub_field( 'bio' );
-									$image = get_sub_field( 'image' );
+									$name        = get_sub_field( 'name' );
+									$bio         = get_sub_field( 'bio' );
+									$image 			 = get_sub_field( 'image' );
+									$attribution = get_sub_field( 'attribution' );
+
 									?>
 								<div class="scholarship-recipient">
 									<h4 class="subtitle is-5 margin-bottom-big has-text-weight-bold"><?php echo $name; ?></h4>
 									<figure class="image is-5by3">
 										<?php echo wp_get_attachment_image( $image, 'small' ); ?>
+										<?php if ( $attribution ) { ?>
+											<figcaption class="attribution">
+												<?php echo $attribution; ?>
+											</figcaption>
+										<?php } ?>
 									</figure>
 									<div><?php echo $bio; ?></div>
 								</div>

@@ -10,10 +10,38 @@
       color: $color-white;
     }
   }
+
   .image {
     padding-bottom: $space-normal;
     margin-bottom: $space-normal;
     border-bottom: 1px solid $color-white;
+  }
+}
+
+.attribution {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  background-color: $color-black;
+  color: $color-white;
+  display: block;
+  width: 100%;
+  font-size: 0.8rem;
+  padding: $space-small $space-normal;
+
+  a {
+    text-decoration: underline;
+    color: inherit;
+  }
+
+  &--right {
+    right: 0;
+    left: auto;
+    margin-left: auto;
+    width: auto;
+    bottom: -40px;
   }
 }
 
@@ -112,7 +140,7 @@
       background-color: black;
       padding: $space-small $space-normal;
       display: inline-block;
-      color: $color-dark-gray;
+      color: white;
 
       a {
         color: white;
@@ -198,6 +226,13 @@
       @include mobile() {
         .course {
           margin-bottom: $space-normal;
+          font-size: 0.8rem;
+        }
+
+        @include desktop() {
+          .course {
+            flex: 1;
+          }
         }
       }
 
@@ -234,13 +269,20 @@
 
   // FAQ Page
   &.page-template-template-faq {
+    .faq-title a {
+      color: inherit;
+      appearance: none;
+      text-decoration: none;
+    }
+
     .faq-sidebar {
+      font-weight: bold;
       position: sticky;
       top: $space-normal;
     }
 
     .faq-sidebar .active {
-      font-weight: bold;
+      color: $color-dark-slate-gray;
     }
   }
 
@@ -309,6 +351,123 @@
     }
   }
 
+  // Alumni
+  .alumni-header,
+  .alumni-members {
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    word-wrap: break-word;
+
+    &.is-editing {
+      align-items: flex-start;
+    }
+  }
+
+  .alumni-header {
+    justify-content: space-between;
+  }
+
+
+  .alumni-header .profile-pic {
+    flex-shrink: 0;
+    margin-right: $space-larger;
+
+    img {
+      border-radius: 50%;
+      border: 2px solid black;
+    }
+  }
+
+  .alumni-header #bbpress-forums #bbp-user-body {
+    margin-left: 0;
+    width: 100%;
+
+    h2 {
+      margin-top: $space-bigger;
+      font-size: 1.4em !important;
+    }
+  }
+
+  .alumni-header .right {
+    overflow-x: hidden;
+  }
+
+  .alumni-header--single-user .right {
+    margin-left: 0;
+    margin-right: auto;
+  }
+
+  .alumni-members-wrapper--single-row {
+    .alumni-members {
+      flex-wrap: nowrap !important;
+      row-gap: $space-large;
+    }
+  }
+
+  .alumni-members-wrapper {
+    .alumni-members {
+      flex-wrap: wrap;
+      gap: $space-large;
+    }
+
+    .alumni-member {
+      flex-shrink: 0;
+      width: 120px;
+    }
+  }
+
+  .alumni-members-wrapper--fancy {
+    .alumni-members {
+      max-width: 680px;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+      gap: $space-small;
+    }
+
+    .alumni-member {
+      flex-shrink: 0;
+      width: 60px;
+
+      span {
+        display: none;
+      }
+    }
+  }
+
+  .alumni-member {
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    align-self: stretch;
+
+    img {
+      width: 100%;
+      border-radius: 50%;
+      border: 3px solid black;
+    }
+
+    span {
+      flex-grow: 1;
+      line-height: 1;
+    }
+  }
+
+  .forum-posts {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: $space-larger;
+
+    li {
+      flex: 1;
+    }
+  }
+
   // Course template
   &.single-cc_course {
     .course-meta {
@@ -374,6 +533,7 @@
 
     .title {
       margin: 0;
+      line-height: 1.4;
       flex-grow: 1;
     }
 
@@ -466,6 +626,7 @@
       row-gap: $space-normal;
 
       @include tablet() {
+        flex-direction: row;
         justify-content: space-between;
         align-items: center;
         margin-top: $space-big;
@@ -526,6 +687,10 @@
       display: flex;
       flex-direction: column;
 
+      a:hover {
+        color: inherit;
+      }
+
       .has-background-soft-gold {
         flex-grow: 1;
         display: flex;
@@ -548,6 +713,13 @@
 
     li {
       margin-bottom: $space-normal;
+    }
+  }
+
+  .resource {
+    &:hover {
+      background-color: $color-brighter-forest-green;
+      text-decoration: none;
     }
   }
 }

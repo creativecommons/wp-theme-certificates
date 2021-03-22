@@ -1,0 +1,43 @@
+{
+    "active": true,
+    "description": "",
+    "fields": [
+        {
+            "conditional_logic": 0,
+            "default_value": "",
+            "delay": 0,
+            "instructions": "",
+            "key": "field_5fcf412a55067",
+            "label": "Featured Image Attribution",
+            "media_upload": 1,
+            "name": "featured_image_attribution",
+            "required": 0,
+            "tabs": "all",
+            "toolbar": "full",
+            "type": "wysiwyg",
+            "wrapper": {
+                "class": "",
+                "id": "",
+                "width": ""
+            }
+        }
+    ],
+    "hide_on_screen": "",
+    "instruction_placement": "label",
+    "key": "group_5fc84e23acb06",
+    "label_placement": "top",
+    "location": [
+        [
+            {
+                "operator": "==",
+                "param": "post_type",
+                "value": "cc_course"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "modified": 1607418232,
+    "position": "normal",
+    "style": "default",
+    "title": "Course Information"
+}
